@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<p>
+{% ifnotequal page 1 %}
+<a id="pager" href="/search?page={{ page|add:"-1" }}&query={{ encoded_query }}">&lt;&lt;前のページ</a>
+{% endifnotequal %}
+<a id="pager" href="/search?page={{ page|add:1 }}&query={{ encoded_query }}">次のページ&gt;&gt;</a>
+</p>
+
+<a id="select" href="javascript:selectAll()">全選択</a>
+<a id="select" href="javascript:deselectAll()">全解除</a>
+
+<form>
+<input type="button" value="まとめてフォロー" onClick="bulkFollow()" />
+
+<span id="status_top" class="status"></span>
+
+<hr />
+
+<p>
+{% for user in users %}
+<div name="users" class="users" id="{{ user.unique_id }}" onMouseOver="$('#{{user.unique_id}}').css({backgroundColor: '#ffff88'});" onMouseOut="$('#{{user.unique_id}}').css({backgroundColor: 'white'});" onClick="check_input('{{ user.unique_id}}');">
+<div id="span_{{ user.unique_id }}"></div>
+<input type="checkbox" value="{{ user.from_user }}" id="input_{{ user.unique_id }}" onClick="check_input('{{ user.unique_id }}')" /> 
+<img src="{{ user.profile_image_url }}" witdh="48" height="48" />
+{{ user.from_user }}
+{{ user.text }} 
+<br />
+</div>
+<hr />
+{% endfor %}
+</p>
+
+<input type="button" value="まとめてフォロー" onClick="bulkFollow()" />
+<span id="status_bottom" class="status"></span>
+
+</form>
+
+<p>
+{% ifnotequal page 1 %}
+<a id="pager" href="/search?page={{ page|add:"-1" }}&query={{ encoded_query }}">&lt;&lt;前のページ</a>
+{% endifnotequal %}
+<a id="pager" href="/search?page={{ page|add:1 }}&query={{ encoded_query }}">次のページ&gt;&gt;</a>
+</p>
+
+<script type="text/javascript" src="/js/search.js"></script>
+
+{% endblock %}

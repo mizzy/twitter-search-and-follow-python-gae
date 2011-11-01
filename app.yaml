@@ -1,0 +1,15 @@
+application: twitter-search-and-follow
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /css
+  static_dir: css
+- url: /img
+  static_dir: img
+- url: /js
+  static_dir: js
+- url: /.*
+  script: twitter_search_and_follow.py
+  secure: always

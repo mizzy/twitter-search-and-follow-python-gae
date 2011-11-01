@@ -1,0 +1,25 @@
+<html>
+<head>
+<script type="text/javascript" src="/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="/js/fader.js"></script>
+<title>twitter search and follow</title>
+<link rel="Stylesheet" href="/css/style.css" type="text/css" />
+
+</head>
+<body>
+<img src="{{ my.profile_image_url }}" /> <span class="screen_name">{{ my.screen_name }}</span>
+
+<form method="get" action="/search">
+<input type="text" name="query" value="{{ query }}" id="query" />
+<input type="submit" value="検索" />
+</form>
+
+{% block content %}{% endblock %}
+
+<script type="text/javascript">
+$('#query').focus();
+</script>
+
+<div id="copyright">&copy; 宮田</div>
+</body>
+</html>
